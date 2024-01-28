@@ -20,3 +20,5 @@ Route::get('/', function () {
 Route::get('/mulai-ngoding', function () {
     return view('blank_page.blank');
 })->name("blank");
+
+# Test Ting
