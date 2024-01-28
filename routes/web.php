@@ -23,3 +23,5 @@ Route::get('/mulai-ngoding', function () {
 
 # Test Ting
 // sidik berhasil 
+
+// bisa donks
