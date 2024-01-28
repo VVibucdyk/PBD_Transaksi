@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="{{route("dashboard")}}"><i class="fas fa-fw fa-tachometer-alt"></i><span>Dashboard</span></a>
+        <a class="nav-link" href="{{route("dashboard")}}"><i class="fas fa-fw fa-tachometer-alt"></i><span>Dashboard PBD</span></a>
     </li>
 
     <!-- Heading -->
