@@ -22,3 +22,4 @@ Route::get('/mulai-ngoding', function () {
 })->name("blank");
 
 # Test Ting
+// sidik berhasil 
