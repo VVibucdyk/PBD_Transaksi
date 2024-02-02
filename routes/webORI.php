@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\fakturController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +17,11 @@ Route::get('/', function () {
     return view('dashboard');
 })->name("dashboard");
 
-// Route::get('/mulai-ngoding', function () {
-//     return view('blank_page.blank');
-// })->name("blank");
+Route::get('/mulai-ngoding', function () {
+    return view('blank_page.blank');
+})->name("blank");
 
-Route::resource('faktur', fakturController::class);
+# Test Ting
+// sidik berhasil 
+
+// bisa donks
