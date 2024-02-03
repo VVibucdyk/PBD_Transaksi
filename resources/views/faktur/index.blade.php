@@ -32,6 +32,7 @@
                 <th class="">Diskon_Harga</th>
                 <th class="">PPN</th>
                 <th class="">Total</th>
+                <th class="">Status</th>
                 <th class="col-md-1">Aksi</th>
             </tr>
         </thead>
@@ -51,13 +52,14 @@
                 <td>{{ $item->Diskon_Harga }}</td>
                 <td>{{ $item->PPN }}</td>
                 <td>{{ $item->Total }}</td>
+                <td>{{ $item->Status }}</td>
                 <td>
                     <a href='{{ url('faktur/'.$item->Kode_Faktur.'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
-                    <form onsubmit="return confirm('Yakin akan menghapus data?')" class="d-inline" action="{{ url('faktur/'.$item->Kode_Faktur) }}" method="post">
+                    {{-- <form onsubmit="return confirm('Yakin akan menghapus data?')" class="d-inline" action="{{ url('faktur/'.$item->Kode_Faktur) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" name="submit" class="btn btn-danger btn-sm">Hapus</button>
-                    </form>
+                    </form> --}}
                 </td>
             </tr>
             <?php $i++ ?> 
