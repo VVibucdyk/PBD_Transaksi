@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     @include('layout.partials.head')
-</head> 
+</head>
 <body id="page-top">
     <div id="wrapper">
         @include('layout.partials.sidebar')
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 @include('layout.partials.nav')
-                @include('layout.partials.pesan')
                 @yield('content-wrapper')
             </div>
             @include('layout.partials.footer')

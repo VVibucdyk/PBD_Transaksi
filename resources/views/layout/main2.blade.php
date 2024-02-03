@@ -9,7 +9,6 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 @include('layout.partials.nav')
-                @include('layout.partials.pesan')
                 @yield('content-wrapper')
             </div>
             @include('layout.partials.footer')

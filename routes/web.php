@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\fakturController;
+use App\Http\Controllers\pemesanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard');
-})->name("dashboard");
+});
 
 // Route::get('/mulai-ngoding', function () {
 //     return view('blank_page.blank');
 // })->name("blank");
 
 Route::resource('faktur', fakturController::class);
+
+Route::resource('pemesan', pemesanController::class);

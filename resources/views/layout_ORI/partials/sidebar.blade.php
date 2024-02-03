@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url("/")}}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route("dashboard")}}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="{{url("/")}}"><i class="fas fa-fw fa-tachometer-alt"></i><span>Dashboard PBD</span></a>
+        <a class="nav-link" href="{{route("dashboard")}}"><i class="fas fa-fw fa-tachometer-alt"></i><span>Dashboard PBD</span></a>
     </li>
 
     <!-- Heading -->
@@ -32,9 +32,9 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{url("faktur")}}">Faktur</a>
-                <a class="collapse-item" href="{{url("/")}}">Rincian</a>
-                <a class="collapse-item" href="{{url("pemesan")}}">Pemesan</a>
-                <a class="collapse-item" href="{{url("/")}}">Pelanggan</a>
+                <a class="collapse-item" href="{{url("")}}">Rincian</a>
+                <a class="collapse-item" href="{{url("")}}">Pemesan</a>
+                <a class="collapse-item" href="{{url("")}}">Pelanggan</a>
             </div>
         </div>
     </li>
