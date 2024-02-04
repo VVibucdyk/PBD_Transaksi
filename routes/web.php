@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\fakturController;
 use App\Http\Controllers\pemesanController;
+use App\Http\Controllers\RinciFakturController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,5 +25,5 @@ Route::get('/', function () {
 // })->name("blank");
 
 Route::resource('faktur', fakturController::class);
-
+Route::resource('rincian',RinciFakturController::class);
 Route::resource('pemesan', pemesanController::class);

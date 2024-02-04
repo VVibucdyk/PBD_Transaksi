@@ -32,7 +32,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{url("faktur")}}">Faktur</a>
-                <a class="collapse-item" href="{{url("/")}}">Rincian</a>
+                <a class="collapse-item" href="{{url("rincian")}}">Rincian</a>
                 <a class="collapse-item" href="{{url("pemesan")}}">Pemesan</a>
                 <a class="collapse-item" href="{{url("/")}}">Pelanggan</a>
             </div>
