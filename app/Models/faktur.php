@@ -28,4 +28,9 @@ class faktur extends Model
     {
         return $this->belongsTo(pemesan::class, 'Kode_Pemesan', 'Kode_Pemesan');
     }
+
+    public function rincian_faktur()
+    {
+        return $this->hasmany(rincian_faktur::class, 'Kode_Faktur', 'Kode_Faktur');
+    }
 }

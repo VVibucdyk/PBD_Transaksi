@@ -40,11 +40,11 @@
                                 <td>{{ $item->Kode_Faktur }}</td>
                                 <td>{{ $item->Jumlah }}</td>
                                 <td>{{ $item->Nama_Barang }}</td>
-                                <td>{{ $item->Harga_Awal }}</td>
-                                <td>{{ $item->Diskon }}</td>
-                                <td>{{ $item->Harga_Total }}</td>
+                                <td>{{ "Rp " . number_format($item->Harga_Awal, 0, ',', '.') }}</td>
+                                <td>{{ $item->Diskon }}%</td>
+                                <td>{{ "Rp " . number_format($item->Harga_Total, 0, ',', '.') }}</td>
                                 <td>
-                                    <a href='{{ url('rincian/'.$item->Kode_Faktur.'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
+                                    <a href='{{ url('rincian/'.$item->Kode_Rincian.'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
                                     <form onsubmit="return confirm('Apakah Anda Yakin Akan Menghapus Data ?')" 
                                     class="d-inline" action="{{ url('rincian/'.$item->Kode_Rincian) }}" method="POST">
                                         @csrf

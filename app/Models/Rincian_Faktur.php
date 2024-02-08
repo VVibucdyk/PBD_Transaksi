@@ -18,4 +18,9 @@ class Rincian_Faktur extends Model
                      
     protected $table = 'rincian_faktur';
     public $timestamps = false;
+
+    public function faktur()
+    {
+        return $this->belongsTo(faktur::class, 'Kode_Faktur', 'Kode_Faktur');
+    }
 }

@@ -7,15 +7,13 @@
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <a href="{{ url('rincian') }}" class="btn btn-secondary"><< Kembali</a>
         <div class="mb-3 row">
-            <label for="nim" class="col-sm-2 col-form-label">Kode Rincian</label>
-            <div class="col-sm-10">
-                {{ $data->Kode_Rincian }}
-            </div>
-        </div>
-        <div class="mb-3 row">
             <label for="nama" class="col-sm-2 col-form-label">Kode Faktur</label>
             <div class="col-sm-10">
-                {{ $data->Kode_Faktur }}
+                <select name="kode_faktur" id="kode_faktur">
+                    @foreach ($data2 as $item)
+                        <option value="{{ $item->Kode_Faktur }}">{{ $item->Kode_Faktur }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="mb-3 row">
@@ -44,13 +42,6 @@
             <div class="col-sm-10">
                 <input type="text" class="form-control" name='diskon' id="diskon"
                 value="{{ $data->Diskon }}">
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="jurusan" class="col-sm-2 col-form-label">Harga Total</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name='harga_total' id="harga_total"
-                value="{{ $data->Harga_Total }}">
             </div>
         </div>                                             
         <div class="mb-3 row">
