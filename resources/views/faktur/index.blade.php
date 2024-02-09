@@ -21,19 +21,19 @@
         <thead>
             <tr>
                 <th class="">No</th>
-                <th class="">Kode_Faktur </th>
-                <th class="">No_Faktur_Pajak</th>
-                <th class="">No_Surat_Jalan</th>
-                <th class="">No_Surat_Pembelian</th>
-                <th class="">Tanggal_Faktur</th>
-                <th class="">Nama_Pemesan </th>
+                <th class="">Faktur</th>
+                <th class="">Faktur Pajak</th>
+                <th class="">Surat Jalan</th>
+                <th class="">Surat Pembelian</th>
+                <th class="">Tanggal</th>
+                <th class="">Pemesan</th>
                 <th class="">Subtotal</th>
                 <th class="">DP</th>
-                <th class="">Diskon_Harga</th>
+                <th class="">Diskon</th>
                 <th class="">PPN</th>
                 <th class="">Total</th>
                 <th class="">Status</th>
-                <th class="col-md-1">Aksi</th>
+                {{-- <th class="col-md-1">Aksi</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -47,14 +47,25 @@
                 <td>{{ $item->No_Surat_Pembelian }}</td>
                 <td>{{ $item->Tanggal_Faktur }}</td>
                 <td>{{ $item->pemesan->Nama_Pemesan }}</td>
-                <td>{{ $item->Subtotal }}</td>
-                <td>{{ $item->DP }}</td>
-                <td>{{ $item->Diskon_Harga }}</td>
-                <td>{{ $item->PPN }}</td>
-                <td>{{ $item->Total }}</td>
-                <td>{{ $item->Status }}</td>
+                <td>{{ "Rp " . number_format($item->Subtotal, 0, ',', '.') }}</td>
+                <td>{{ $item->DP."%" }}</td>
+                <td>{{ $item->Diskon_Harga."%" }}</td>
+                <td>{{ "Rp " . number_format($item->PPN, 0, ',', '.') }}</td>
+                <td>{{ "Rp " . number_format($item->Total, 0, ',', '.') }}</td>
                 <td>
-                    <a href='{{ url('faktur/'.$item->Kode_Faktur.'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
+                    <form onsubmit="return confirm('Yakin akan mengganti status FAKTUR?')" class="d-inline" action="{{ url('faktur/'.$item->Kode_Faktur) }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" name="submit"
+                        @if ($item->Status == 'Open')
+                            class="btn btn-success btn-sm">{{ $item->Status }}</button>
+                        @else
+                            class="btn btn-danger btn-sm">{{ $item->Status }}</button>
+                        @endif
+                    </form>
+                </td>
+                <td>
+                    {{-- <a href='{{ url('faktur/'.$item->Kode_Faktur.'/edit') }}' class="btn btn-warning btn-sm">Edit</a> --}}
                     {{-- <form onsubmit="return confirm('Yakin akan menghapus data?')" class="d-inline" action="{{ url('faktur/'.$item->Kode_Faktur) }}" method="post">
                         @csrf
                         @method('DELETE')

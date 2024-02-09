@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="Subtotal" class="col-sm-2 col-form-label">Kode_Pemesan</label>
+                <label for="Subtotal" class="col-sm-2 col-form-label">Nama_Pemesan</label>
                 <div class="col-sm-10">
                     <select name="Kode_Pemesan" id="Kode_Pemesan" class="form-control" onchange="{{ $data->Kode_Pemesan }}" oninput="{{ $data->Kode_Pemesan }}">
                             <option value="{{ $data->Kode_Pemesan }}"> Pilih Pemesan </option>

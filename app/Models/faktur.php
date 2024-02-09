@@ -19,7 +19,8 @@ class faktur extends Model
         'DP',
         'Diskon_Harga',
         'PPN',
-        'Total'
+        'Total',
+        'Status'
     ];
     protected $table = 'faktur';
     public $timestamps = false;

@@ -8,73 +8,92 @@
         @csrf
         <div class="my-3 p-3">
             <div class="mb-3 row">
-                <label for="Kode_Faktur" class="col-sm-2 col-form-label">Kode_Faktur</label>
+                <label for="Kode_Faktur" class="col-sm-2 col-form-label">Faktur</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name='Kode_Faktur' id="Kode_Faktur" value="{{ Session::get('Kode_Faktur') }}">
+                    <input readonly type="text" class="form-control" name='Kode_Faktur' id="Kode_Faktur" value="{{ $KodeFaktur }}">
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="No_Faktur_Pajak" class="col-sm-2 col-form-label">No_Faktur_Pajak</label>
+                <label for="No_Faktur_Pajak" class="col-sm-2 col-form-label">Faktur Pajak</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name='No_Faktur_Pajak' id="No_Faktur_Pajak" value="{{ Session::get('No_Faktur_Pajak') }}">
+                    <input readonly type="text" class="form-control" name='No_Faktur_Pajak' id="No_Faktur_Pajak" value="{{ $FakturPajak }}">
+                </div>
+            </div> 
+            <div class="mb-3 row">
+                <label for="No_Surat_Jalan" class="col-sm-2 col-form-label">Surat Jalan</label>
+                <div class="col-sm-10">
+                    <input readonly type="text" class="form-control" name='No_Surat_Jalan' id="No_Surat_Jalan" value="{{ $SuratJalan }}">
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="No_Surat_Jalan" class="col-sm-2 col-form-label">No_Surat_Jalan</label>
+                <label for="No_Surat_Pembelian" class="col-sm-2 col-form-label">Surat Pembelian</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name='No_Surat_Jalan' id="No_Surat_Jalan" value="{{ Session::get('No_Surat_Jalan') }}">
+                    <input readonly type="text" class="form-control" name='No_Surat_Pembelian' id="No_Surat_Pembelian" value="{{ $SuratPembelian }}">
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="No_Surat_Pembelian" class="col-sm-2 col-form-label">No_Surat_Pembelian</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name='No_Surat_Pembelian' id="No_Surat_Pembelian" value="{{ Session::get('No_Surat_Pembelian') }}">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="Tanggal_Faktur" class="col-sm-2 col-form-label">Tanggal_Faktur</label>
+                <label for="Tanggal_Faktur" class="col-sm-2 col-form-label">Tanggal</label>
                 <div class="col-sm-10">
                     <input type="date" class="form-control" name='Tanggal_Faktur' id="Tanggal_Faktur" value="{{ Session::get('Tanggal_Faktur') }}">
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="Subtotal" class="col-sm-2 col-form-label">Kode_Pemesan</label>
+                <label for="Subtotal" class="col-sm-2 col-form-label">Pemesan</label>
                 <div class="col-sm-10">
                     <select name="Kode_Pemesan" id="Kode_Pemesan" class="form-control">
                             <option value=""> Pilih Pemesan </option>
-                        @foreach ($data2 as $item2)
-                            <option value="{{ $item2->Kode_Pemesan }}"> {{ $item2->Kode_Pemesan }} </option>
+                        @foreach ($data as $item)
+                            <option value="{{ $item->Kode_Pemesan }}"> {{ $item->pelanggan->Nama_Pelanggan }} dengan user {{ $item->Nama_Pemesan }} </option>
                         @endforeach
                     </select>
                 </div>
             </div>
-            <div class="mb-3 row">
+            {{-- <div class="mb-3 row">
                 <label for="Subtotal" class="col-sm-2 col-form-label">Subtotal</label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" name='Subtotal' id="Subtotal" value="{{ Session::get('Subtotal') }}">
                 </div>
+            </div> --}}
+            <div class="mb-3 row">
+                <label for="DP" class="col-sm-2 col-form-label">DP (%)</label>
+                <div class="col-sm-10">
+                    <?php
+                        if (Session::has('DP')) {
+                            $nilaiDP = Session::get('DP');
+                            // {{ Session::get('DP') }}
+                        } else {
+                            $nilaiDP = 0;
+                        }
+                    ?>
+                    <input type="number" class="form-control" name='DP' id="DP" value="<?php echo $nilaiDP; ?>" max="100" min="0">
+                </div>
             </div>
             <div class="mb-3 row">
-                <label for="DP" class="col-sm-2 col-form-label">DP</label>
+                <label for="Diskon_Harga" class="col-sm-2 col-form-label">Diskon_Harga (%)</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" name='DP' id="DP" value="{{ Session::get('DP') }}">
+                    <?php
+                        if (Session::has('Diskon_Harga')) {
+                            $nilaiDiskonHarga = Session::get('Diskon_Harga');
+                            // {{ Session::get('DP') }}
+                        } else {
+                            $nilaiDiskonHarga = 0;
+                        }
+                    ?>
+                    <input type="number" class="form-control" name='Diskon_Harga' id="Diskon_Harga" value="<?php echo $nilaiDiskonHarga; ?>" max="100" min="0">
                 </div>
-            </div><div class="mb-3 row">
-                <label for="Diskon_Harga" class="col-sm-2 col-form-label">Diskon_Harga</label>
-                <div class="col-sm-10">
-                    <input type="number" class="form-control" name='Diskon_Harga' id="Diskon_Harga" value="{{ Session::get('Diskon_Harga') }}">
-                </div>
-            </div><div class="mb-3 row">
+            </div>
+            {{-- <div class="mb-3 row">
                 <label for="PPN" class="col-sm-2 col-form-label">PPN</label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" name='PPN' id="PPN" value="{{ Session::get('PPN') }}">
                 </div>
-            </div><div class="mb-3 row">
+            </div>
+            <div class="mb-3 row">
                 <label for="Total" class="col-sm-2 col-form-label">Total</label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" name='Total' id="Total" value="{{ Session::get('Total') }}">
                 </div>
-            </div>
+            </div> --}}
             <div class="mb-3 row">
                 <label for="" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
@@ -84,6 +103,5 @@
             </div>
         </div>
     </form>
-
 </div>
 @endsection
