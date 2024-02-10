@@ -1,3 +1,4 @@
+<!-- footer-scripts.blade.php as SCRIPT-->
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
@@ -39,6 +40,8 @@
 <!-- Page level custom scripts -->
 <script src="{{url("/js/demo/chart-area-demo.js")}}"></script>
 <script src="{{url("/js/demo/chart-pie-demo.js")}}"></script>
+<!-- End of SCRIPT-->
+
 
 
 

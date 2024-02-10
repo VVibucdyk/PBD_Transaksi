@@ -1,3 +1,4 @@
+<!-- pesan.blade.php as Message -->
 @if (Session::has('success'))
     <div class="pt-3">
         <div class="alert alert-success">
@@ -17,3 +18,4 @@
     </div>
 </div>
 @endif
+<!-- End of Message -->
