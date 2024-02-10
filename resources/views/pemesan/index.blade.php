@@ -1,70 +1,68 @@
-@extends('layout.main')
+@extends('layout.main') {{-- Sesuaikan dengan layout yang Anda gunakan --}}
+
 @section('content-wrapper')
-<div class="container-fluid">
-
-    <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">TABEL PEMESAN</h1>
-    <div class="pb-3">
-        <form class="d-flex" action="{{ url('faktur') }}" method="get">
-            <input class="form-control me-1" type="search" name="katakunci" value="{{ Request::get('katakunci') }}" placeholder="Masukkan Kode_Faktur/No_Faktur_Pajak/No_Surat_Jalan/No_Surat_Pembelian/Tanggal_Faktur/Kode_Pemesan" aria-label="Search">
-            <button class="btn btn-secondary" type="submit">Cari</button>
-        </form>
+<div class="container-fluid pt-3">
+    <div class="d-flex justify-content-between mb-4 align-items-center">
+        <h1 class="h3 mb-0 text-gray-800">Daftar Pemesan</h1>
+        <div>
+            <!-- Form Pencarian -->
+            <form class="d-inline-block" action="{{ route('pemesan.index') }}" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm" name="search" placeholder="Cari Pemesan" value="{{ request('search') }}">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary btn-sm" type="submit">
+                            <i class="fas fa-search"></i> <!-- FontAwesome Icon -->
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- Tombol Tambah Pemesan Baru -->
+            <a href="{{ route('pemesan.create') }}" class="btn btn-primary btn-sm ml-2">
+                <i class="fas fa-plus"></i> Tambah Pemesan Baru
+            </a>
+        </div>
     </div>
 
-    <!-- TOMBOL TAMBAH DATA -->
-    <div class="pb-3">
-        <a href='{{ url('pemesan/create') }}' class="btn btn-primary">Tambah Data</a>
-    </div>
-
-    <!-- TABEL -->
     <table class="table table-striped">
         <thead>
             <tr>
-                <th class="">No</th>
-                <th class="">Kode_Faktur </th>
-                <th class="">No_Faktur_Pajak</th>
-                <th class="">No_Surat_Jalan</th>
-                <th class="">No_Surat_Pembelian</th>
-                <th class="">Tanggal_Faktur</th>
-                <th class="">Kode_Pemesan </th>
-                <th class="">Subtotal</th>
-                <th class="">DP</th>
-                <th class="">Diskon_Harga</th>
-                <th class="">PPN</th>
-                <th class="">Total</th>
-                <th class="col-md-1">Aksi</th>
+                <th>Kode Pemesan</th>
+                <th>Nama Pemesan</th>
+                <th>Jabatan</th>
+                <th>Kode Pelanggan</th>
+                <th>Telepon</th>
+                <th>Email</th>
+                <th>Aksi</th>
             </tr>
         </thead>
-        {{-- <tbody>
-            <?php $i = $data->firstItem() ?>
-            @foreach ($data as $item)
-            <tr>
-                <td>{{ $i }}</td>
-                <td>{{ $item->Kode_Faktur }}</td>
-                <td>{{ $item->No_Faktur_Pajak }}</td>
-                <td>{{ $item->No_Surat_Jalan }}</td>
-                <td>{{ $item->No_Surat_Pembelian }}</td>
-                <td>{{ $item->Tanggal_Faktur }}</td>
-                <td>{{ $item->Kode_Pemesan }}</td>
-                <td>{{ $item->Subtotal }}</td>
-                <td>{{ $item->DP }}</td>
-                <td>{{ $item->Diskon_Harga }}</td>
-                <td>{{ $item->PPN }}</td>
-                <td>{{ $item->Total }}</td>
-                <td>
-                    <a href='' class="btn btn-warning btn-sm">Edit</a>
-                    <form onsubmit="return confirm('Yakin akan menghapus data?')" class="d-inline" action="{{ url('faktur/'.$item->Kode_Faktur) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" name="submit" class="btn btn-danger btn-sm">Hapus</button>
-                    </form>
-                </td>
-            </tr>
-            <?php $i++ ?> 
+        <tbody>
+            @foreach ($pemesans as $pemesan)
+                <tr>
+                    <td>{{ $pemesan->Kode_Pemesan }}</td>
+                    <td>{{ $pemesan->Nama_Pemesan }}</td>
+                    <td>{{ $pemesan->Jabatan }}</td>
+                    <td>{{ $pemesan->Kode_Pelanggan }}</td>
+                    <td>{{ $pemesan->Telepon }}</td>
+                    <td>{{ $pemesan->Email }}</td>
+                    <td class="text-right"> <!-- Tambahkan kelas text-right di sini juga -->
+                        <a href="{{ route('pemesan.show', $pemesan->Kode_Pemesan) }}" class="btn btn-info btn-sm">
+                            <i class="fas fa-eye"></i> Lihat
+                        </a>
+                        <a href="{{ route('pemesan.edit', $pemesan->Kode_Pemesan) }}" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <form action="{{ route('pemesan.destroy', $pemesan->Kode_Pemesan) }}" method="POST" style="display: inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                <i class="fas fa-trash"></i> Hapus
+                            </button>
+                        </form>
+                    </td>
+                </tr>
             @endforeach
-        </tbody> --}}
-    </table class="table table-striped">
-    {{-- {{ $data->withQueryString()->links() }} --}}
-    <br>
+        </tbody>
+    </table>
+    {{ $pemesans->links() }}
 </div>
 @endsection

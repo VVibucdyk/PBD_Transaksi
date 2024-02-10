@@ -2,63 +2,73 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pemesan;
 use Illuminate\Http\Request;
 
-class pemesanController extends Controller
+class PemesanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        return view('pemesan.index');
+        $search = $request->input('search');
+
+        if ($search) {
+            $pemesans = Pemesan::where('Nama_Pemesan', 'like', '%' . $search . '%')
+                ->orWhere('Kode_Pemesan', 'like', '%' . $search . '%')
+                // Tambahkan kondisi pencarian untuk kolom lain yang diinginkan
+                ->paginate(10);
+        } else {
+            $pemesans = Pemesan::paginate(10);
+        }
+
+        return view('pemesan.index', compact('pemesans'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('pemesan.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'Nama_Pemesan' => 'required|max:255',
+            'Jabatan' => 'required|max:255',
+            'Kode_Pelanggan' => 'required|integer',
+            'Telepon' => 'nullable|max:50',
+            'Email' => 'nullable|email|max:255',
+        ]);
+
+        Pemesan::create($validatedData);
+        return redirect()->route('pemesan.index')->with('success', 'Pemesan baru berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Pemesan $pemesan)
     {
-        //
+        return view('pemesan.show', compact('pemesan'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Pemesan $pemesan)
     {
-        //
+        return view('pemesan.edit', compact('pemesan'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Pemesan $pemesan)
     {
-        //
+        $validatedData = $request->validate([
+            'Nama_Pemesan' => 'required|max:255',
+            'Jabatan' => 'required|max:255',
+            'Kode_Pelanggan' => 'required|integer',
+            'Telepon' => 'nullable|max:50',
+            'Email' => 'nullable|email|max:255',
+        ]);
+
+        $pemesan->update($validatedData);
+        return redirect()->route('pemesan.index')->with('success', 'Pemesan berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Pemesan $pemesan)
     {
-        //
+        $pemesan->delete();
+        return redirect()->route('pemesan.index')->with('success', 'Pemesan berhasil dihapus.');
     }
 }
