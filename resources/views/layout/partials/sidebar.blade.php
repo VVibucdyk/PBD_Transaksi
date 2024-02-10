@@ -34,7 +34,7 @@
                 <a class="collapse-item" href="{{url("faktur")}}">Faktur</a>
                 <a class="collapse-item" href="{{url("rincian")}}">Rincian</a>
                 <a class="collapse-item" href="{{url("pemesan")}}">Pemesan</a>
-                <a class="collapse-item" href="{{url("/")}}">Pelanggan</a>
+                <a class="collapse-item" href="{{url("pelanggan")}}">Pelanggan</a>
             </div>
         </div>
     </li>

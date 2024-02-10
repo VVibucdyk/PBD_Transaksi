@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Pemesan extends Model
 {
+    use HasFactory;
     protected $table = 'pemesan';
     protected $primaryKey = 'Kode_Pemesan';
     public $incrementing = true;
@@ -18,4 +20,14 @@ class Pemesan extends Model
         'Telepon',
         'Email'
     ];
+
+    public function faktur()
+    {
+        return $this->hasMany(faktur::class, 'Kode_Pemesan', 'Kode_Pemesan');
+    }
+
+    public function pelanggan()
+    {
+        return $this->belongsTo(pelanggan::class, 'Kode_Pelanggan', 'Kode_Pelanggan');
+    }
 }
