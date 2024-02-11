@@ -21,14 +21,14 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th class="col-md-1">Kode Rincian</th>
-                            <th class="col-md-1">Kode Faktur</th>
-                            <th>Jumlah</th>
-                            <th>Nama Barang</th>
-                            <th>Harga Awal</th>
-                            <th>Diskon</th>
-                            <th>Harga Total</th>
-                            <th>Aksi</th>
+                            <th class="">Kode Rincian</th>
+                            <th class="">Kode Faktur</th>
+                            <th class="">Jumlah</th>
+                            <th class="">Nama Barang</th>
+                            <th class="">Harga Awal</th>
+                            <th class="">Diskon</th>
+                            <th class="">Harga Total</th>
+                            <th class="">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,12 +44,16 @@
                                 <td>{{ $item->Diskon }}%</td>
                                 <td>{{ "Rp " . number_format($item->Harga_Total, 0, ',', '.') }}</td>
                                 <td>
-                                    <a href='{{ url('rincian/'.$item->Kode_Rincian.'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
+                                    <a href='{{ url('rincian/'.$item->Kode_Rincian.'/edit') }}' class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
                                     <form onsubmit="return confirm('Apakah Anda Yakin Akan Menghapus Data ?')" 
                                     class="d-inline" action="{{ url('rincian/'.$item->Kode_Rincian) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" name="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        <button type="submit" name="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i> Hapus
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
