@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\pelanggan;
+use App\Models\Pemesan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -58,7 +59,7 @@ class pelangganController extends Controller
         ];
 
         pelanggan::create($data);
-        return redirect()->to('pelanggan')->with('success', 'Berhasil menambahkan data');
+        return redirect()->to('pelanggan')->with('success', 'Pelanggan berhasil ditambahkan');
     }
 
     /**
@@ -106,7 +107,11 @@ class pelangganController extends Controller
      */
     public function destroy(string $id)
     {
-        pelanggan::where('Kode_Pelanggan', $id)->delete();
-        return redirect()->to('pelanggan')->with('success', 'Berhasil delete data');
+        if (Pemesan::where('Kode_Pelanggan', $id)->exists()) {
+            return redirect()->to('pelanggan')->with('error', 'Pelanggan tidak bisa dihapus karena ada dalam data pemesan.');
+        } else {
+            pelanggan::where('Kode_Pelanggan', $id)->delete();
+            return redirect()->to('pelanggan')->with('success', 'Pelanggan Berhasil dihapus');
+        }
     }
 }

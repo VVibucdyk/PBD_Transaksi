@@ -2,22 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\faktur;
 use App\Models\Pemesan;
+use App\Models\pelanggan;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class PemesanController extends Controller
 {
     public function index(Request $request)
     {
-        $search = $request->input('search');
-
-        if ($search) {
-            $pemesans = Pemesan::where('Nama_Pemesan', 'like', '%' . $search . '%')
-                ->orWhere('Kode_Pemesan', 'like', '%' . $search . '%')
-                // Tambahkan kondisi pencarian untuk kolom lain yang diinginkan
-                ->paginate(10);
+        $katakunci = $request->katakunci;
+        $jumlahbaris = 8;
+        if ($katakunci) {
+            $pemesans = Pemesan::with('pelanggan')
+                ->where('Nama_Pemesan', 'like', '%' . $katakunci . '%')
+                ->orWhere('Kode_Pemesan', 'like', '%' . $katakunci . '%')
+                ->orWhereHas('pelanggan', function ($query) use ($katakunci) {
+                    $query->where('Nama_Pelanggan', 'like', "%$katakunci%");
+                }) // search tabel yang lain
+                ->paginate($jumlahbaris);
         } else {
-            $pemesans = Pemesan::paginate(10);
+            $pemesans = Pemesan::orderBy('Kode_Pemesan', 'desc')
+                ->paginate($jumlahbaris);
         }
 
         return view('pemesan.index', compact('pemesans'));
@@ -66,9 +73,14 @@ class PemesanController extends Controller
         return redirect()->route('pemesan.index')->with('success', 'Pemesan berhasil diperbarui.');
     }
 
-    public function destroy(Pemesan $pemesan)
+    public function destroy(string $id)
     {
-        $pemesan->delete();
-        return redirect()->route('pemesan.index')->with('success', 'Pemesan berhasil dihapus.');
+        // Periksa apakah ada faktur yang menggunakan id_pemesan yang ingin dihapus
+        if (faktur::where('Kode_Pemesan', $id)->exists()) {
+            return redirect()->route('pemesan.index')->with('error', 'Pemesan tidak bisa dihapus karena ada dalam data faktur.');
+        } else {
+            Pemesan::where('Kode_Pemesan', $id)->delete();
+            return redirect()->route('pemesan.index')->with('success', 'Pemesan berhasil dihapus.');
+        }
     }
 }

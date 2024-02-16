@@ -19,6 +19,7 @@
                             <input type="text" class="form-control" id="Alamat" name="Alamat" value="{{ Session::get('Alamat') }}">
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
+                        <a href='{{ url('pelanggan') }}' class="btn btn-primary">TABEL</a>
                     </form>
                 </div>
             </div>

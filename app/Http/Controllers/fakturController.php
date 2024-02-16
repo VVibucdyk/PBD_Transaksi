@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\faktur;
 use App\Models\pelanggan;
 use App\Models\pemesan;
+use App\Models\Rincian_Faktur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as FacadesSession;
 
@@ -135,7 +136,7 @@ class fakturController extends Controller
             'Status' => 'Open'
         ];
         faktur::create($data);
-        return redirect()->to('faktur')->with('success', 'Berhasil menambahkan data');
+        return redirect()->to('faktur')->with('success', 'Faktur berhasil ditambahkan');
     }
 
     /**
@@ -210,7 +211,11 @@ class fakturController extends Controller
      */
     public function destroy(string $id)
     {
-        faktur::where('Kode_Faktur', $id)->delete();
-        return redirect()->to('faktur')->with('success', 'Berhasil delete data');
+        if (Rincian_Faktur::where('Kode_Faktur', $id)->exists()) {
+            return redirect()->to('faktur')->with('error', 'Faktur ' . $id . ' tidak bisa dihapus karena ada dalam Daftar Rincian Faktur.');
+        } else {
+            faktur::where('Kode_Faktur', $id)->delete();
+            return redirect()->to('faktur')->with('success', 'Faktur ' . $id . ' Berhasil dihapus');
+        }
     }
 }

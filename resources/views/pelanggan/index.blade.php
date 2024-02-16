@@ -23,11 +23,11 @@
             </div>
             <!-- TABEL -->
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped" style="font-size: 14px"  >
                     <thead>
                         <tr>
                             <th class="">No</th>
-                            <th class="">Kode Pelanggan</th>
+                            {{-- <th class="">Kode Pelanggan</th> --}}
                             <th class="">Nama Pelanggan</th>
                             <th class="">Alamat</th>
                             <th class="col-md-1">Aksi</th>
@@ -38,7 +38,7 @@
                         @foreach ($data as $item)
                         <tr>
                             <td>{{ $i }}</td>
-                            <td>{{ $item->Kode_Pelanggan }}</td>
+                            {{-- <td>{{ $item->Kode_Pelanggan }}</td> --}}
                             <td>{{ $item->Nama_Pelanggan }}</td>
                             <td>{{ $item->Alamat }}</td>
                             <td>

@@ -33,6 +33,7 @@
                             <input type="email" class="form-control" id="Email" name="Email">
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
+                        <a href='{{ url('pemesan') }}' class="btn btn-primary">TABEL</a>
                     </form>
                 </div>
             </div>

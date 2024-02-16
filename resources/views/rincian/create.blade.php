@@ -12,7 +12,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="Kode_Faktur">Kode Faktur:</label>
-                            <select name="kode_faktur" id="kode_faktur">
+                            <select name="kode_faktur" id="kode_faktur" class="form-control">
                                 @foreach ($data as $item)
                                     <option value="{{ $item->Kode_Faktur }}">{{ $item->Kode_Faktur }}</option>
                                 @endforeach

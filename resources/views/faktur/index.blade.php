@@ -23,22 +23,22 @@
             </div>
             <!-- TABEL -->
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped" style="font-size: 14px">
                     <thead>
                         <tr>
-                            <th class="">No</th>
-                            <th class="">Faktur</th>
-                            <th class="">Faktur Pajak</th>
-                            <th class="">Surat Jalan</th>
-                            <th class="">Surat Pembelian</th>
-                            <th class="">Tanggal</th>
-                            <th class="">Pemesan</th>
-                            <th class="">Subtotal</th>
-                            <th class="">DP</th>
-                            <th class="">Diskon</th>
-                            <th class="">PPN</th>
-                            <th class="">Total</th>
-                            <th class="">Status</th>
+                            <th style="vertical-align: top">No</th>
+                            <th style="vertical-align: top">Faktur <br> Faktur Pajak</th>
+                            {{-- <th>Faktur Pajak</th> --}}
+                            <th style="vertical-align: top">Surat Jalan <br> Surat Pembelian</th>
+                            {{-- <th>Surat Pembelian</th> --}}
+                            <th style="vertical-align: top">Tanggal</th>
+                            <th style="vertical-align: top">Pemesan</th>
+                            <th style="vertical-align: top">Subtotal</th>
+                            <th style="vertical-align: top">DP</th>
+                            <th style="vertical-align: top">Diskon</th>
+                            <th style="vertical-align: top">PPN</th>
+                            <th style="vertical-align: top">Total</th>
+                            <th style="vertical-align: top">Status</th>
                             {{-- <th class="col-md-1">Aksi</th> --}}
                         </tr>
                     </thead>
@@ -47,10 +47,10 @@
                         @foreach ($data as $item)
                         <tr>
                             <td>{{ $i }}</td>
-                            <td>{{ $item->Kode_Faktur }}</td>
-                            <td>{{ $item->No_Faktur_Pajak }}</td>
-                            <td>{{ $item->No_Surat_Jalan }}</td>
-                            <td>{{ $item->No_Surat_Pembelian }}</td>
+                            <td>{{ $item->Kode_Faktur }} <br> {{ $item->No_Faktur_Pajak }}</td>
+                            {{-- <td>{{ $item->No_Faktur_Pajak }}</td> --}}
+                            <td>{{ $item->No_Surat_Jalan }} <br> {{ $item->No_Surat_Pembelian }}</td>
+                            {{-- <td>{{ $item->No_Surat_Pembelian }}</td> --}}
                             <td>{{ $item->Tanggal_Faktur }}</td>
                             <td>{{ $item->pemesan->Nama_Pemesan }}</td>
                             <td>{{ "Rp " . number_format($item->Subtotal, 0, ',', '.') }}</td>
@@ -59,7 +59,7 @@
                             <td>{{ "Rp " . number_format($item->PPN, 0, ',', '.') }}</td>
                             <td>{{ "Rp " . number_format($item->Total, 0, ',', '.') }}</td>
                             <td>
-                                <form onsubmit="return confirm('Yakin akan mengganti status FAKTUR?')" class="d-inline" action="{{ url('faktur/'.$item->Kode_Faktur) }}" method="post">
+                                <form onsubmit="return confirm('Yakin akan mengganti status Faktur?')" class="d-inline" action="{{ url('faktur/'.$item->Kode_Faktur) }}" method="post">
                                     @csrf
                                     @method('PUT')
                                         <button style="width: 80px; type="submit" name="submit" class="btn btn-sm 
@@ -69,7 +69,16 @@
                                         btn-danger"><i class="far fa-eye-slash"></i>
                                     @endif
                                         {{ $item->Status }}</button>
+                                        
                                 </form>
+                                <form onsubmit="return confirm('Yakin akan menghapus Faktur?')" class="d-inline" action="{{ url('faktur/'.$item->Kode_Faktur) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" name="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                </form>
+                            </td>
+                            <td>
+                                
                             </td>
                             {{-- <td>
                                 <a href='{{ url('faktur/'.$item->Kode_Faktur.'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
@@ -85,6 +94,7 @@
                     </tbody>
                 </table class="table table-striped">
                 {{ $data->withQueryString()->links() }}
+                
             </div>
         </div>
     </div>

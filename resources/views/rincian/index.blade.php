@@ -1,33 +1,39 @@
 @extends('layout.main')
 @section('content-wrapper')
-
 <div class="container-fluid">
-        <!-- START DATA -->
-        <div class="my-3 p-3 bg-body rounded shadow-sm">
-                <!-- FORM PENCARIAN -->
-                <div class="pb-3">
-                  <form class="d-flex" action="{{ url('rincian') }}" method="get">
-                      <input class="form-control me-1" type="search" name="katakunci" value="{{ Request::get('katakunci') }}" placeholder=" Masukkan Kode Rincian/Kode Faktur/Jumlah/Nama Barang/Harga Awal/Diskon/Harga Total" aria-label="Search">
-                      <button class="btn btn-secondary" type="submit">Cari</button>
-                  </form>
-                </div>
-                
-                <!-- TOMBOL TAMBAH DATA -->
-                <div class="pb-3">
-                  <a href='{{ url('rincian/create') }}' class="btn btn-primary">+ Tambah Data</a>
-                </div>
-          
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <!-- FORM PENCARIAN & TAMBAH DATA-->
+            <div class="d-flex justify-content-between mb-3 align-items-center">
+                <h1 class="h3 mb-0 text-gray-800"><strong>Daftar Rincian Faktur</strong></h1>
+                <form class="d-inline-block" action="{{ url('rincian') }}" method="get">
+                    <div class="input-group">
+                        <input class="form-control form-control-sm" type="text" name="katakunci" value="{{ Request::get('katakunci') }}" placeholder="Cari Rincian" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary btn-sm" type="submit">
+                                <i class="fas fa-search"></i> <!-- FontAwesome Icon -->
+                            </button>
+                            <!-- TOMBOL TAMBAH DATA -->
+                            <a href="{{ url('rincian/create') }}" class="btn btn-primary btn-sm ml-2">
+                                <i class="fas fa-plus"></i> Tambah Rincian Baru
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- TABEL -->
+            <div class="table-responsive" style="font-size: 14px">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th class="">Kode Rincian</th>
-                            <th class="">Kode Faktur</th>
+                            {{-- <th class="">Kode Rincian</th> --}}
+                            <th class="">Faktur</th>
                             <th class="">Jumlah</th>
                             <th class="">Nama Barang</th>
-                            <th class="">Harga Awal</th>
+                            <th class="">Harga</th>
                             <th class="">Diskon</th>
-                            <th class="">Harga Total</th>
+                            <th class="">Total</th>
                             <th class="">Aksi</th>
                         </tr>
                     </thead>
@@ -36,7 +42,7 @@
                         @foreach ($data as $item)
                             <tr>
                                 <td>{{ $i }}</td>
-                                <td>{{ $item->Kode_Rincian }}</td>
+                                {{-- <td>{{ $item->Kode_Rincian }}</td> --}}
                                 <td>{{ $item->Kode_Faktur }}</td>
                                 <td>{{ $item->Jumlah }}</td>
                                 <td>{{ $item->Nama_Barang }}</td>
@@ -61,6 +67,9 @@
                         @endforeach
                     </tbody>
                 </table>
-            {{ $data->withQueryString()->links() }}
+                {{ $data->withQueryString()->links() }}
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

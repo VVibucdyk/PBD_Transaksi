@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\cetakController;
 use App\Http\Controllers\fakturController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\pelangganController;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', function () {
     return view('dashboard');
 })->middleware('auth');
@@ -28,7 +30,7 @@ Route::get('/', function () {
 // })->name("blank");
 
 Route::resource('faktur', fakturController::class)->middleware('auth');
-Route::resource('rincian',RinciFakturController::class)->middleware('auth');
+Route::resource('rincian', RinciFakturController::class)->middleware('auth');
 Route::resource('pemesan', pemesanController::class)->middleware('auth');
 Route::resource('pelanggan', pelangganController::class)->middleware('auth');
 
@@ -48,3 +50,5 @@ Route::get('/logout', function () {
 
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+Route::resource('cetak', cetakController::class)->middleware('auth');
