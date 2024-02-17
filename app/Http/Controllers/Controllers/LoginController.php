@@ -13,7 +13,7 @@ class LoginController extends Controller
     }
 
     function loginProcess(Request $request)
-    {  
+    {
         $credentials = $request->validate([
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],

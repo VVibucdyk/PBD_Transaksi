@@ -23,7 +23,7 @@
             </div>
             <!-- TABEL -->
             <div class="table-responsive">
-                <table class="table table-striped" style="font-size: 14px">
+                <table class="table table-striped" style="font-size: 12px">
                     <thead>
                         <tr>
                             <th style="vertical-align: top">No</th>

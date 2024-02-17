@@ -15,27 +15,27 @@ class RegisterController extends Controller
     }
 
     function registerProcess(Request $request)
-    {  
+    {
         // Cek apakah email sudah terdaftar
         $get_user = User::where('email', $request->email)->first();
-        if($get_user == null) {
-            if($request->password == $request->re_password) {
+        if ($get_user == null) {
+            if ($request->password == $request->re_password) {
                 $user = User::create([
                     'first_name' => $request->first_name,
                     'last_name' => $request->last_name,
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
                 ]);
-        
+
                 if (Auth::attempt(['email' => $user->email, 'password' => $request->password])) {
                     $request->session()->regenerate();
                     return redirect('/');
-                }   
-            }else{
+                }
+            } else {
                 return redirect()->back()->with('success', 'Password tidak match!');
             }
-        }else{
-            return redirect()->back()->with('success', 'Email Sudah Terdaftar!');   
+        } else {
+            return redirect()->back()->with('success', 'Email Sudah Terdaftar!');
         }
     }
 }
