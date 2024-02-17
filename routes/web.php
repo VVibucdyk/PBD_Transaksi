@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\cetakController;
+use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\fakturController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\pelangganController;
@@ -21,9 +22,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware('auth');
+// Route::get('/', function () {
+//     return view('dashboard');
+// })->middleware('auth');
+
+Route::get('/', [dashboardController::class, 'view'])
+    ->name('dashboard')
+    ->middleware('auth');
+
 
 // Route::get('/mulai-ngoding', function () {
 //     return view('blank_page.blank');

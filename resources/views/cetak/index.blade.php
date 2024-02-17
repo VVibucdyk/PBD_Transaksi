@@ -1,7 +1,7 @@
 @extends('layout.main')
 @section('content-wrapper')
 <div class="container">
-  <div class="card">
+  <div class="card shadow mb-4">
     <!-- HEADER -->
     <div class="card-header">
       <form class="d-inline-block" action="{{ url('cetak/view') }}" method="get">
