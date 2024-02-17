@@ -78,7 +78,7 @@ class fakturController extends Controller
         }
 
         $data = pemesan::with('pelanggan')
-            ->orderBy('Kode_Pelanggan', 'asc')
+            ->orderBy('Kode_Pelanggan', 'desc')
             ->get();
 
         return view('faktur.create', compact('data'))

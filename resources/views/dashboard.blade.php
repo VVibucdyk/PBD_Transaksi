@@ -22,9 +22,8 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
-                        <!-- Content Row -->
+                        <!-- Content Informasi Total Data -->
                         <div class="row">
-
                             <!-- Earnings (Monthly) Card Example -->
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-primary shadow h-100 py-2">
@@ -100,6 +99,72 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Content Prestasi -->
+
+                        <div class="row">
+                            <!-- Area Chart Faktur TERMAHAL -->
+                            <div class="col-xl-4 col-lg-4">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-primary">Faktur TERMAHAL : {{ "Rp " . number_format($fakturTermahal->Total, 0, ',', '.') }}</h6>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-area" style="font-size: 14px">
+                                            <p>Nomor Faktur: <strong>{{ $fakturTermahal->Kode_Faktur }}</strong></p>
+                                            <p>Nama Pemesan: <strong>{{ $fakturTermahal->pemesan->Nama_Pemesan }}</strong></p>
+                                            <p>Email: {{ $fakturTermahal->pemesan->Email }}</p>
+                                            <p>Telepon: {{ $fakturTermahal->pemesan->Telepon }}</p>
+                                            <p>Dari: {{ $fakturTermahal->pemesan->pelanggan->Nama_Pelanggan }}</p>
+                                            <p>Jabatan: {{ $fakturTermahal->pemesan->Jabatan }}</p>
+                                            <p>Alamat: {{ $fakturTermahal->pemesan->pelanggan->Alamat }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Area Chart Total Faktur 5 Bulan Terakhir -->
+                            <div class="col-xl-4 col-lg-4">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-primary">Total Faktur 5 Bulan Terakhir</h6>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-area" style="font-size: 14px">
+                                            @foreach($totalPerTahun->take(5) as $total)
+                                                <p>{{ $total->tahun }} / {{ $total->bulan }}: Dengan Total {{ "Rp " . number_format($total->total, 0, ',', '.') }}</p>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Area Chart -->
+                            <div class="col-xl-4 col-lg-4">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-primary"></h6>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-area" style="font-size: 14px">
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content Row -->
+                        <div class="row">
+
+                            
                         </div>
                     </div>
                     <!-- /.container-fluid -->
