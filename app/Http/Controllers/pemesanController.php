@@ -32,7 +32,8 @@ class PemesanController extends Controller
 
     public function create()
     {
-        return view('pemesan.create');
+        $data = pelanggan::orderBy('Kode_Pelanggan', 'desc')->get();
+        return view('pemesan.create')->with('data', $data);
     }
 
     public function store(Request $request)

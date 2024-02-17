@@ -21,8 +21,12 @@
                             <input type="text" class="form-control" id="Jabatan" name="Jabatan" required>
                         </div>
                         <div class="form-group">
-                            <label for="Kode_Pelanggan">Kode Pelanggan:</label>
-                            <input type="number" class="form-control" id="Kode_Pelanggan" name="Kode_Pelanggan" required>
+                            <label for="Kode_Pelanggan">Nama Pelanggan:</label>
+                            <select name="Kode_Pelanggan" id="Kode_Pelanggan" class="form-control">
+                                @foreach ($data as $item)
+                                <option value="{{ $item->Kode_Pelanggan }}"  >{{ $item->Nama_Pelanggan }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="Telepon">Telepon:</label>
