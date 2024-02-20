@@ -44,7 +44,7 @@
                                             Login
                                         </button>
                                         <hr>
-                                        <a href="{{ route('auth.google') }}" class="btn btn-google btn-user btn-block">
+                                        <a href="#" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
                                     </form>
