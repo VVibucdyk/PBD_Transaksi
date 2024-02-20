@@ -166,7 +166,7 @@
           <div>
             <div>
               <div>
-                <img src="{{url("../resources/Image/ttd_tgn.jpg")}}" alt="" width="80%">
+                <img src="{{url("img/ttd_tgn.jpg")}}" alt="" width="80%">
               </div>
             </div>
           </div>

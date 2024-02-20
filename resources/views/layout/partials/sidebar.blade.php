@@ -4,7 +4,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center m-3" href="{{url("/")}}">
         <div class="sidebar-brand-icon">
-            <img src="{{url("../resources/Image/icon_website.jpeg")}}" alt="" style="width: 60px">
+            <img src="{{url('img/icon_website.jpeg') }}" alt="" style="width: 60px">
         </div>
         <div class="sidebar-brand-text mx-3">GURITA MANDALA PERSADA</div>
     </a>
